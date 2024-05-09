@@ -33,6 +33,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         boolean haveExtraPicture = intent.getBooleanExtra(HAVE_EXTRA_PICTURE, false);
         boolean hasRemoved = intent.getBooleanExtra(IS_REMOVED, false);
         boolean canReply = intent.getBooleanExtra(CAN_REPLY, false);
+        String category = intent.getStringExtra(CATEGORY);
+        String groups = intent.getStringExtra(GROUPS);
         int id = intent.getIntExtra(ID, -1);
 
 
@@ -47,6 +49,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         data.put("largeIcon", largeIcon);
         data.put("hasRemoved", hasRemoved);
         data.put("canReply", canReply);
+        data.put("category", category);
+        data.put("groups", groups);
 
         eventSink.success(data);
     }

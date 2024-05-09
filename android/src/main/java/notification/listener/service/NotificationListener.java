@@ -38,7 +38,7 @@ public class NotificationListener extends NotificationListenerService {
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
-    public void onNotificationRemoved(StatusBarNotification sbn) {
+        public void onNotificationRemoved(StatusBarNotification sbn) {
         handleNotification(sbn, true);
     }
 
@@ -58,6 +58,10 @@ public class NotificationListener extends NotificationListenerService {
         intent.putExtra(NotificationConstants.PACKAGE_NAME, packageName);
         intent.putExtra(NotificationConstants.ID, notification.getId());
         intent.putExtra(NotificationConstants.CAN_REPLY, action != null);
+        if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            intent.putExtra(NotificationConstants.CATEGORY, notification.getNotification().category);
+        }
+        intent.putExtra(NotificationConstants.GROUPS, notification.getNotification().getGroup());
 
         if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
             cachedNotifications.put(notification.getId(), action);

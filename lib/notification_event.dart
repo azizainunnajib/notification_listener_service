@@ -51,18 +51,22 @@ class ServiceNotificationEvent {
   /// the content of the notification
   String? content;
 
-  ServiceNotificationEvent({
-    this.id,
-    this.canReply,
-    this.haveExtraPicture,
-    this.hasRemoved,
-    this.extrasPicture,
-    this.packageName,
-    this.title,
-    this.appIcon,
-    this.largeIcon,
-    this.content,
-  });
+  String? category;
+  String? groups;
+
+  ServiceNotificationEvent(
+      {this.id,
+      this.canReply,
+      this.haveExtraPicture,
+      this.hasRemoved,
+      this.extrasPicture,
+      this.packageName,
+      this.title,
+      this.appIcon,
+      this.largeIcon,
+      this.content,
+      this.category,
+      this.groups});
 
   ServiceNotificationEvent.fromMap(Map<dynamic, dynamic> map) {
     id = map['id'];
@@ -75,6 +79,8 @@ class ServiceNotificationEvent {
     appIcon = map['appIcon'];
     largeIcon = map['largeIcon'];
     content = map['content'];
+    category = map['category'];
+    groups = map['groups'];
   }
 
   /// send a direct message reply to the incoming notification
